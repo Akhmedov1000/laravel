@@ -70,6 +70,6 @@ class ExperienceController extends Controller
     {
         $experience->delete();
 
-        return response()->json(['message' => 'Кандидат удалён'], 204);
+        return response()->json(['message' => 'Deleted'], 204);
     }
 }

@@ -30,7 +30,9 @@ class ResumeController extends Controller
             "city" => "required",
         ]);
 
+        $resume = Resume::create($validated);
 
+        return response()->json($resume, 201);
     }
 
     /**
@@ -38,7 +40,8 @@ class ResumeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $resume = Resume::find($id);
+        return $resume ? response()->json($resume, 200): response()->json(['message' => 'Not Found'], 404);
     }
 
     /**
@@ -46,14 +49,27 @@ class ResumeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            "candidate_id" => "required",
+            "experience_id" => "required",
+            "title" => "required|string",
+            "summary" => "required",
+            "salary_expectation" => "required",
+            "city" => "required" . $resume->id,
+        ]);
+
+        $resume->update($validated);
+
+        return response()->json($resume, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Resume $resume)
     {
-        //
+        $resume->delete();
+
+        return response()->json(['message' => 'Deleted'], 204);
     }
 }

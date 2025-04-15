@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resume_skills', function (Blueprint $table) {
+        Schema::create('application', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('resume_id')->constrained('resumes');
-            $table->foreignId('skill_id')->constrained('skills');
+            $table->foreignId('resumes_id')->constrained('resumes');
+            $table->foreignId('vacancies_id')->constrained('vacancies');
+            $table->date('application_date');
+            $table->string('status_application');
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resume_skills');
+        Schema::dropIfExists('application');
     }
 };

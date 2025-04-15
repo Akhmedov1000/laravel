@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Resume extends Model
 {
-    protected $fillable = ['candidate_id', 'experience_id', 'title', 'summary', 'salary_expectation', 'city'];
+
+ protected $fillable = ['experience', 'education', 'skills', 'desired_position', 'salary_expectation', 'user_id', 'Applications_id', 'Applications_resumes_id', 'Applications_vacancies_id'];
 }

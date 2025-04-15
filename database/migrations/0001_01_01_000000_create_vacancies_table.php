@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('teams');
             $table->decimal('zarplata');
             $table->string('mestopolozheniye');
-            $table->date('putification_date');
+            $table->date('publication_date');
             $table->string('status');
             $table->integer('companies_id');
             $table->integer('application_id');

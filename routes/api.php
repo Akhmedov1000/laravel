@@ -10,6 +10,7 @@ use App\Http\Controllers\EducationsController;
 use App\Http\Controllers\ResumeSkillsController;
 
 
+
 Route::apiResource('application', \App\Models\Application::class);
 Route::apiResource('resume', \App\Models\Resume::class);
 Route::apiResource('candidate', CandidateController::class);

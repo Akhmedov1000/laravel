@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CandidateController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VacanciesController;
@@ -19,3 +20,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+

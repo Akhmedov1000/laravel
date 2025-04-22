@@ -8,7 +8,7 @@ class VacanciesController extends Controller
 {
     public function index()
     {
-        $vacancies = $vacancy::all();
+        $vacancies = vacancy::all();
         return view('vacancies.index', compact('vacancies'));
     }
     public function create()

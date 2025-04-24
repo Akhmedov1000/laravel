@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Resume;
+use App\Models\VacancyResume;
 use Illuminate\Http\Request;
 
 class ResumeController extends Controller
@@ -13,7 +13,7 @@ class ResumeController extends Controller
      */
     public function index()
     {
-        return response()->json(Resume::all(), 200);
+        return response()->json(VacancyResume::all(), 200);
     }
 
     /**

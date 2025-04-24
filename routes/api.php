@@ -1,15 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\VacancyController;
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\ApplicationController;
-use App\Http\Controllers\ResumeController;
-use App\Http\Controllers\Api\ExperienceController;
 use App\Http\Controllers\Api\CandidateController;
-use App\Http\Controllers\SkillController;
+use App\Http\Controllers\Api\ExperienceController;
+use App\Http\Controllers\Api\VacancyController;
+use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\EducationsController;
+use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\ResumeSkillsController;
+use App\Http\Controllers\SkillController;
+use Illuminate\Support\Facades\Route;
 
 Route::apiResource('vacancies', VacancyController::class);
 Route::apiResource('books', BookController::class);

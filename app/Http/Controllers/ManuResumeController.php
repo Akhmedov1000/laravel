@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\VacancyResume;
 use Illuminate\Http\Request;
 
 class ResumeController extends Controller
 {
     public function index()
     {
-        $resumes = Resume::all();
+        $resumes = VacancyResume::all();
         return view('resume.index', compact('resumes'));
     }
 
@@ -19,19 +20,19 @@ class ResumeController extends Controller
 
     public function store(Request $request)
     {
-        Resume::create($request->all());
+        VacancyResume::create($request->all());
         return redirect()->route('resumes.index');
     }
 
     public function show(string $id)
     {
-        $resume = Resume::findOrFail($id);
+        $resume = VacancyResume::findOrFail($id);
         return view('resumes.show', compact('resume'));
     }
 
     public function edit(string $id)
     {
-        $resume = Resume::findOrFail($id);
+        $resume = VacancyResume::findOrFail($id);
         return view('resumes.edit', compact('resume'));
     }
 

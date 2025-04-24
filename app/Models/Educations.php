@@ -16,6 +16,6 @@ class Educations extends Model
 
     public function resume()
     {
-        return $this->belongsTo(Resume::class);
+        return $this->belongsTo(VacancyResume::class);
     }
 }

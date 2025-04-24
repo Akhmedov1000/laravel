@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
-class VacanciesController extends Controller
+class VacancyController extends Controller
 {
     public function index()
     {

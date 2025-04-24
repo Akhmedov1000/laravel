@@ -10,13 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('cache', function (Blueprint $table) {
-            $table->string('Job_tittle')->primary();
-            $table->mediumText('description');
+        Schema::create('vacancies', function (Blueprint $table) {
+            $table->string('Job-tittle')->primary();
+            $table->text('description');
             $table->string('requirements');
             $table->string('teams');
-            $table->decimal('zarplata');
-            $table->string('mestopolozheniye');
+            $table->decimal('salary');
+            $table->string('location')->nullable();
             $table->date('putification_date');
             $table->string('status');
             $table->integer('companies_id');

@@ -6,15 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use function Pest\Laravel\json;
 
-class VacncyCompaniesController extends Controller
+class VacancyCompaniesController extends Controller
 {
     public function index()
     {
-        return response()->json(VacncyCompaniesController::all(), 200);
+        return response()->json(VacancyCompaniesController::all(), 200);
     }
     public function store(Request $request)
     {
-        $companies = VacncyCompaniesController::create($request->validate([
+        $companies = VacancyCompaniesController::create($request->validate([
             'name'=>'required | string',
             'description'=>'required | string',
             'contact'=>'required | string',
@@ -24,14 +24,14 @@ class VacncyCompaniesController extends Controller
 
     public function show($id)
     {
-        $companies = VacncyCompaniesController::with('Vacancies')->find($id);
+        $companies = VacancyCompaniesController::with('Vacancies')->find($id);
         return $companies ? response()->json($companies, 200) : response()
             >json(['message' => 'Not Found'], 404);
     }
 
     public function update(Request $request, $id)
     {
-        $companies = VacncyCompaniesController::find($id);
+        $companies = VacancyCompaniesController::find($id);
         if (!$companies) return response()->json(['message' => 'Not Found'],
             404);
 
@@ -44,7 +44,7 @@ class VacncyCompaniesController extends Controller
 
     public function destroy($id)
     {
-        $companies = VacncyCompaniesController::find($id);
+        $companies = VacancyCompaniesController::find($id);
         if (!$companies) return response()->json(['message' => 'Not Found'],
             404);
 

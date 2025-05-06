@@ -19,9 +19,6 @@ return new class extends Migration
             $table->string('desired_position')->nullable();
             $table->string('salary_expectation')->nullable();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('Applications_id')->constrained('applications');
-            $table->foreignId('Applications_resumes_id')->constrained('applications_resumes');
-            $table->foreignId('Applications_vacancies_id')->constrained('applications_vacancies');
             $table->timestamps();
         });
     }

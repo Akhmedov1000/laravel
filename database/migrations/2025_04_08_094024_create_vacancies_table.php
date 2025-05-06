@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('cache', function (Blueprint $table) {
+        Schema::create('Vacancies', function (Blueprint $table) {
             $table->string('Job_tittle')->primary();
             $table->mediumText('description');
             $table->string('requirements');
@@ -21,8 +21,8 @@ return new class extends Migration {
             $table->string('status');
             $table->foreignId('companies_id');
             $table->foreignId('application_id');
-            $table->foreignId('application_resumes_id');
-            $table->foreignId('application_vacancies_id');
+            $table->foreignId('resumes_id');
+
         });
 
 

@@ -8,7 +8,8 @@ class EducationsController extends Controller
 {
     public function index()
     {
-        return response()->json(Educations::all(), 200);
+        $educations = Educations::all();
+        return view('educations.index', compact('educations'));
     }
 
     public function store(Request $request)

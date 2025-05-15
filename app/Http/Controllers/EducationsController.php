@@ -8,39 +8,32 @@ class EducationsController extends Controller
 {
     public function index()
     {
-        return response()->json(Educations::all(), 200);
+        $education = Educations::all(); ;
+        return view('education.index', compact('education'));
     }
 
     public function store(Request $request)
     {
-        $education = Educations::create($request->validate([            'name' => 'required|string|max:255',
-
-        ]));
-        return response()->json($education, 201);
+        Educations::create($request->all());
+        return redirect()->route('educations.index');
     }
 
-    public function show($id)
+    public function show(string $id)
     {
-        $education = Educations::with('resumes')->find($id);
-        return $education ? response()->json($education, 200) : response()
-        ->json(['message' => 'Not Found'], 404);
-}
-    public function update(Request $request, $id)
-    {
-        $education = Educations::find($id);
-        if (!$education) return response()->json(['message' => 'Not Found'],
-            404);
-        $education->update($request->validate([
-            'name' => 'required|string|max:255',
-        ]));
-        return response()->json($education, 200);
+        $educations = Educations::findOrFail($id);
+        return view('educations.show', compact('educations'));
     }
-    public function destroy($id)
+    public function edit(string $id)
     {
-        $education = Educations::find($id);
-        if (!$education) return response()->json(['message' => 'Not Found'],
-            404);
-        $education->delete();
-        return response()->json(['message' => 'Deleted'], 200);
+        $educations = Educations::findOrFail($id);
+        return view('educations.edit', compact('educations'));
+    }
+    public function update(Request $request, string $id)
+    {
+        return redirect()->route('educations.index');
+    }
+    public function destroy(string $id)
+    {
+        return redirect()->route('educations.index');
     }
 }

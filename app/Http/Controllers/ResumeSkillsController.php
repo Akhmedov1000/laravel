@@ -9,43 +9,32 @@ class ResumeSkillsController extends Controller
 {
     public function index()
     {
-        return response()->json(ResumeSkills::all(), 200);
+        $resumeskills = ResumeSkills::all(); ;
+        return view('resumeskills.index', compact('resumeskills'));
     }
 
     public function store(Request $request)
     {
-         $resume_skills = ResumeSkills::create($request->validate([
-             'resumes_id' => 'required',
-             'skills_id' => 'required',
-             'level' => 'required'
-         ]));
-         return response()->json($resume_skills, 201);
+        ResumeSkills::create($request->all());
+        return redirect()->route('resumeskills.index');
     }
 
-    public function show($id)
+    public function show(string $id)
     {
-        $resume_skills = ResumeSkills::with('resumes','skills')->find($id);
-        return $resume_skills ? response()->json($resume_skills, 200) : response()
-        >json(['message' => 'Not Found'], 404);
+        $resumeskills = ResumeSkills::findOrFail($id);
+        return view('resumeskills.show', compact('resumeskills'));
     }
-
-    public function update(Request $request, $id)
+    public function edit(string $id)
     {
-        $resume_skills = ResumeSkills::find($id);
-        if (!$resume_skills) return response()->json(['message' => 'Not Found'],
-            404);
-        $resume_skills->update($request->validate([
-            'name' => 'required|string|max:255',
-        ]));
-        return response()->json($resume_skills, 200);
+        $resumeskills = ResumeSkills::findOrFail($id);
+        return view('resumeskills.edit', compact('resumeskills'));
     }
-
-    public function destroy($id)
+    public function update(Request $request, string $id)
     {
-        $resume_skills = ResumeSkills::find($id);
-        if (!$resume_skills) return response()->json(['message' => 'Not Found'],
-            404);
-        $resume_skills->delete();
-        return response()->json(['message' => 'Deleted'], 200);
+        return redirect()->route('resumeskills.index');
+    }
+    public function destroy(string $id)
+    {
+        return redirect()->route('resumeskills.index');
     }
 }

@@ -2,31 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Skill;
+use App\Models\VacancyResume;
 use Illuminate\Http\Request;
 
-class  SkillController extends Controller
+class ResumesController extends Controller
 {
     public function index()
     {
-        $skill = Skill::all(); ;
-        return view('skill.index', compact('skill'));
+        $resumes = ResumesController::all(); ;
+        return view('resumes.index', compact('resumes'));
     }
 
     public function store(Request $request)
     {
-        Skill::create($request->all());
-        return redirect()->route('skill.index');
+        Resumes::create($request->all());
+        return redirect()->route('resumes.index');
     }
 
     public function show(string $id)
     {
-        $skill = Skill::findOrFail($id);
-        return view('skill.show', compact('skill'));
+        $resumes = ResumesController::findOrFail($id);
+        return view('resumes.show', compact('resumes'));
     }
     public function edit(string $id)
     {
-        $skill = Skill::findOrFail($id);
+        $resumes = ResumesController::findOrFail($id);
         return view('educations.edit', compact('resumes'));
     }
     public function update(Request $request, string $id)

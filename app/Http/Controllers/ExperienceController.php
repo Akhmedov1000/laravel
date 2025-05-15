@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Experience;
 use Illuminate\Http\Request;
 
@@ -13,7 +12,8 @@ class ExperienceController extends Controller
      */
     public function index()
     {
-        return response()->json(Experience::all(), 200);
+        $experiences = Experience::all();
+        return view('experiences.index', compact('experiences'));
     }
 
     /**
@@ -31,7 +31,7 @@ class ExperienceController extends Controller
         ]);
 
         $experience = Experience::create($validated);
-        return response()->json($experience, 201);
+        return view('experiences.show', compact('experience'));
     }
 
     /**
@@ -40,7 +40,7 @@ class ExperienceController extends Controller
     public function show(string $id)
     {
         $experience = Experience::find($id);
-        return $experience ? response()->json($experience, 200): response()->json(['message' => 'Not Found'], 404);
+        return view('experiences.show', compact('experience'));
     }
 
     /**
@@ -59,7 +59,7 @@ class ExperienceController extends Controller
 
         $experience->update($validated);
 
-        return response()->json($experience, 200);
+        return view('experiences.show', compact('experience'));
 
     }
 
@@ -70,6 +70,6 @@ class ExperienceController extends Controller
     {
         $experience->delete();
 
-        return response()->json(['message' => 'Кандидат удалён'], 204);
+        return view ('experiences.show', compact('experience'));
     }
 }

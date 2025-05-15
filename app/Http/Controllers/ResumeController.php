@@ -2,49 +2,56 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Experience;
 use Illuminate\Http\Request;
 
 class ResumeController extends Controller
 {
     public function index()
     {
-        $resumes = Resume::all();
-        return view('resume.index', compact('resumes'));
-    }
-
-    public function create()
-    {
-        return view('resume.create');
+        $experiences = Experience::all();
+        return view('experiences.index', compact('experiences'));
     }
 
     public function store(Request $request)
     {
-        Resume::create($request->all());
-        return redirect()->route('resumes.index');
+        $validated = $request->validate([
+            'company_name' => 'required|string',
+            'position' => 'required|string',
+            'description' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'responsibility' => 'required|string',
+        ]);
+
+        $experience = Experience::create($validated);
+        return redirect()->route('experiences.index');
+    }
+    public function show( Experience $experience)
+    {
+        return view('experiences.show', compact('experience'));
     }
 
-    public function show(string $id)
+    public function update(Request $request, Experience $experience)
     {
-        $resume = Resume::findOrFail($id);
-        return view('resumes.show', compact('resume'));
-    }
+        $validated = $request->validate([
+            'company_name' => 'required|string',
+            'position' => 'required|string',
+            'description' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'responsibility' => 'required|string' . $experience->id,
+        ]);
 
-    public function edit(string $id)
-    {
-        $resume = Resume::findOrFail($id);
-        return view('resumes.edit', compact('resume'));
-    }
+        $experience->update($validated);
 
-    public function update(Request $request, string $id)
-    {
-        return redirect()->route('resume.index');
-    }
+        return view('experiences.show', compact('experience'));
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    }
+    public function destroy(Experience $experience)
     {
-        return redirect()->route('resume.index');
+        $experience->delete();
+
+        return view('experiences.show', compact('experience'));
     }
 }

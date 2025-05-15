@@ -14,34 +14,35 @@ class EducationsController extends Controller
 
     public function store(Request $request)
     {
-        $education = Educations::create($request->validate([            'name' => 'required|string|max:255',
-
+        $education = Educations::create($request->validate([
+            'institution_name' => 'required|string|max:255',
+            'degree' => 'required|string|max:255',
+            'field_of_study'=>'required|string|max:255',
+            'start_date'=>'required|date',
+            'end_date'=>'required|date',
+            'description'=>'required|string|max:255',
         ]));
-        return response()->json($education, 201);
+        $education = Educations::create($validated);
+        return redirect()->route('educations.index');
     }
 
-    public function show($id)
+    public function show(Educations $education)
     {
-        $education = Educations::with('resumes')->find($id);
-        return $education ? response()->json($education, 200) : response()
-        ->json(['message' => 'Not Found'], 404);
+return view('educations.show', compact('education'));
+
 }
-    public function update(Request $request, $id)
+    public function update(Request $request, Educations $education)
     {
-        $education = Educations::find($id);
-        if (!$education) return response()->json(['message' => 'Not Found'],
-            404);
-        $education->update($request->validate([
-            'name' => 'required|string|max:255',
-        ]));
-        return response()->json($education, 200);
+        $education->update($request->all());
+        return redirect()->route('educations.index');
     }
-    public function destroy($id)
+    public function edit(Educations $education)
     {
-        $education = Educations::find($id);
-        if (!$education) return response()->json(['message' => 'Not Found'],
-            404);
+        return view('educations.edit', compact('education'));
+    }
+    public function destroy(Educations $education)
+    {
         $education->delete();
-        return response()->json(['message' => 'Deleted'], 200);
+        return redirect()->route('educations.index');
     }
 }

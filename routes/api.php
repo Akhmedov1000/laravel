@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\Api\CandidateController;
-use App\Http\Controllers\Api\Api\ExperienceController;
 use App\Http\Controllers\EducationsController;
+use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\ResumeSkillsController;
 use App\Http\Controllers\SkillController;
 use Illuminate\Support\Facades\Route;

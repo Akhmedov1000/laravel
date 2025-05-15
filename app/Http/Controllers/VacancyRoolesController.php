@@ -1,9 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Api\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\RoolesController;
 use Illuminate\Http\Request;
 use function Pest\Laravel\json;
 

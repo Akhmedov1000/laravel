@@ -1,24 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Api\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Experience;
 use Illuminate\Http\Request;
 
 class ExperienceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return response()->json(Experience::all(), 200);
+       $experiences = Experience::all();
+       return view('experiences.index', compact('experiences'));
+    }
+    public function create()
+    {
+        return view('experiences.create', compact('experiences'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -31,21 +29,13 @@ class ExperienceController extends Controller
         ]);
 
         $experience = Experience::create($validated);
-        return response()->json($experience, 201);
+        return redirect()->route('experiences.index');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show( Experience $experience)
     {
-        $experience = Experience::find($id);
-        return $experience ? response()->json($experience, 200): response()->json(['message' => 'Not Found'], 404);
+        return view('experiences.show', compact('experience'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Experience $experience)
     {
         $validated = $request->validate([
@@ -59,17 +49,13 @@ class ExperienceController extends Controller
 
         $experience->update($validated);
 
-        return response()->json($experience, 200);
+        return view('experiences.show', compact('experience'));
 
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Experience $experience)
     {
         $experience->delete();
 
-        return response()->json(['message' => 'Кандидат удалён'], 204);
+        return view('experiences.show', compact('experience'));
     }
 }

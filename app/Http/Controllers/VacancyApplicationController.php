@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Api\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Application;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use function App\Http\Controllers\Api\Api\json;
 
 class VacancyApplicationController extends Controller
 {
